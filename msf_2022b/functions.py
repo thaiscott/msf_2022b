@@ -9,7 +9,7 @@ from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
 # matplotlib notebook
 
 
-def calculate_distance(rA: np.ndarray, rB: np.ndarray)-> np.floating:
+def calculate_distance(rA: np.ndarray, rB: np.ndarray) -> np.floating:
     """
     Calculate the distance between two points
 
@@ -17,11 +17,11 @@ def calculate_distance(rA: np.ndarray, rB: np.ndarray)-> np.floating:
     __________
 
     rA, rB : np.ndarray
-        The coordinates of each point. 
+        The coordinates of each point.
 
-    Returns 
+    Returns
     _______
-    dist: np.floating 
+    dist: np.floating
          The distance between the two points.
 
     Examples
@@ -30,7 +30,7 @@ def calculate_distance(rA: np.ndarray, rB: np.ndarray)-> np.floating:
     >>> r1 = np.array([0,1.0,0])
     >>> calculate_distance(r1,r2)
     1.0
-    """ 
+    """
     # This function calculates the distance between two points given as numpy arrays.
     d = rA - rB
     dist = np.linalg.norm(d)
@@ -176,6 +176,9 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
 
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
 
+    if min_bond < 0:
+        raise ValueError("Minimum bond length must be greater than or equal to zero.")
+
     # Find the bonds in a molecule (set of coordinates) based on distance criteria.
     bonds = {}
     num_atoms = len(coordinates)
@@ -200,4 +203,3 @@ atom_colors = {
     "Br": "#F4A460",
     "S": "yellow",
 }
-
